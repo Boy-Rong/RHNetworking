@@ -13,6 +13,10 @@
 		EC76BDE020E4B6C00026341E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC76BDDE20E4B6C00026341E /* Main.storyboard */; };
 		EC76BDE220E4B6C10026341E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC76BDE120E4B6C10026341E /* Assets.xcassets */; };
 		EC76BDE520E4B6C10026341E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC76BDE320E4B6C10026341E /* LaunchScreen.storyboard */; };
+		EC76BDF120E4B89B0026341E /* RHRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BDED20E4B89B0026341E /* RHRequest.swift */; };
+		EC76BDF220E4B89B0026341E /* RHNetworkStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BDEE20E4B89B0026341E /* RHNetworkStatus.swift */; };
+		EC76BDF320E4B89B0026341E /* RHNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BDEF20E4B89B0026341E /* RHNetworkProvider.swift */; };
+		EC76BDF420E4B89B0026341E /* RHNetworkExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BDF020E4B89B0026341E /* RHNetworkExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,10 @@
 		EC76BDE120E4B6C10026341E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC76BDE420E4B6C10026341E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC76BDE620E4B6C10026341E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC76BDED20E4B89B0026341E /* RHRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RHRequest.swift; sourceTree = "<group>"; };
+		EC76BDEE20E4B89B0026341E /* RHNetworkStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RHNetworkStatus.swift; sourceTree = "<group>"; };
+		EC76BDEF20E4B89B0026341E /* RHNetworkProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RHNetworkProvider.swift; sourceTree = "<group>"; };
+		EC76BDF020E4B89B0026341E /* RHNetworkExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RHNetworkExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +86,7 @@
 		EC76BDD920E4B6C00026341E /* RHNetworking */ = {
 			isa = PBXGroup;
 			children = (
+				EC76BDEC20E4B89B0026341E /* RHNetwork */,
 				EC76BDDA20E4B6C00026341E /* AppDelegate.swift */,
 				EC76BDDC20E4B6C00026341E /* ViewController.swift */,
 				EC76BDDE20E4B6C00026341E /* Main.storyboard */,
@@ -86,6 +95,17 @@
 				EC76BDE620E4B6C10026341E /* Info.plist */,
 			);
 			path = RHNetworking;
+			sourceTree = "<group>";
+		};
+		EC76BDEC20E4B89B0026341E /* RHNetwork */ = {
+			isa = PBXGroup;
+			children = (
+				EC76BDED20E4B89B0026341E /* RHRequest.swift */,
+				EC76BDEF20E4B89B0026341E /* RHNetworkProvider.swift */,
+				EC76BDEE20E4B89B0026341E /* RHNetworkStatus.swift */,
+				EC76BDF020E4B89B0026341E /* RHNetworkExtensions.swift */,
+			);
+			path = RHNetwork;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,8 +228,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC76BDF220E4B89B0026341E /* RHNetworkStatus.swift in Sources */,
+				EC76BDF420E4B89B0026341E /* RHNetworkExtensions.swift in Sources */,
 				EC76BDDD20E4B6C00026341E /* ViewController.swift in Sources */,
 				EC76BDDB20E4B6C00026341E /* AppDelegate.swift in Sources */,
+				EC76BDF320E4B89B0026341E /* RHNetworkProvider.swift in Sources */,
+				EC76BDF120E4B89B0026341E /* RHRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,7 +381,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 446CL45DQR;
 				INFOPLIST_FILE = RHNetworking/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pyq.PYQ.RHNetworking;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -373,7 +400,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 446CL45DQR;
 				INFOPLIST_FILE = RHNetworking/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pyq.PYQ.RHNetworking;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
