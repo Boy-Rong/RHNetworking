@@ -17,12 +17,17 @@ import ObjectMapper
 // MARK: - 扩展 （扩展的方法依赖根请求方法，默认实现根方法，保证灵活性）
 extension RHNetworkProviderType {
     
-    func reactiveRequest(_ api : API) -> SignalProducer<RHResult<RHResponse.DataType>,NoError> {
+    func reactiveRequest(_ api : API) -> SignalProducer<RHResponse.DataType,RHNetworkError> {
         
         return SignalProducer{ [weak self] observer, lifetime in
             let dataRequest = self?.request(api, completion: { (result) in
+                if result.isSuccess {
+                    observer.send(value: result.value!)
+                } else {
+                    let error = RHNetworkError(result.error!.localizedDescription)
+                    observer.send(error:error)
+                }
                 
-                observer.send(value: result)
                 observer.sendCompleted()
             })
             
@@ -32,12 +37,17 @@ extension RHNetworkProviderType {
         }
     }
     
-    func reactiveRequestData(_ api : API) -> SignalProducer<RHResult<Data>,NoError> {
+    func reactiveRequestData(_ api : API) -> SignalProducer<Data,RHNetworkError> {
         
         return SignalProducer { [weak self] observer, lifetime in
             let dataRequest = self?.requestData(api, completion: { (result) in
+                if result.isSuccess {
+                    observer.send(value: result.value!)
+                } else {
+                    let error = RHNetworkError(result.error!.localizedDescription)
+                    observer.send(error:error)
+                }
                 
-                observer.send(value: result)
                 observer.sendCompleted()
             })
             
@@ -48,20 +58,6 @@ extension RHNetworkProviderType {
     }
 }
 
-
-// MARK: - Reactive 扩展
-extension RHNetworkProvider : ReactiveExtensionsProvider {}
-
-extension Reactive where Base : RHNetworkProviderType {
-    
-    func request(_ api : Base.API) -> SignalProducer<RHResult<RHResponse.DataType>,NoError> {
-        return base.reactiveRequest(api)
-    }
-    
-    func requestData(_ api : Base.API) -> SignalProducer<RHResult<Data>,NoError> {
-        return base.reactiveRequestData(api)
-    }
-}
 
 
 // MARK: - 当响应结果扩展（字典转模型映射）
@@ -93,6 +89,23 @@ extension RHResult where Value == Array<[String : Any]> {
     
 }
 
+// MARK: - 转模型类
+class ObjectMap {
+    
+    static func map<T : Mappable>(with value : Any) -> T? {
+        guard let array = value as? [[String : Any]],
+            let data = array.first
+            else { return nil }
+        return T(JSON: data)
+    }
+    
+    func mapArray<T : Mappable>(with value : Any) -> [T] {
+        guard let array = value as? [[String : Any]]
+            else { return [] }
+        return Mapper<T>().mapArray(JSONArray: array)
+    }
+    
+}
 
 
 

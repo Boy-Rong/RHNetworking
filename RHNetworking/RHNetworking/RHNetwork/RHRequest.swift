@@ -95,11 +95,11 @@ struct RHResponse {
 
 
 /// RH 错误类型
-struct RHError : Error {
+struct RHNetworkError : Error {
     let message : String
-    let info : [String : Any]
+    let info : [String : Any]?
     init(_ message : String = "Error",
-         _ info : [String : Any] = [:]) {
+         _ info : [String : Any]? = nil) {
         self.message = message
         self.info = info
     }

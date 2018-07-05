@@ -42,14 +42,6 @@ class ViewController: UIViewController {
         }
         
         /// 请求3，使用响应式请求。可以自己扩展RxSwift
-        provider.reactiveRequest(GitHub.userProfile("495929699"))
-            .startWithValues { (result) in
-                if result.isSuccess {
-                    print("成功：\(result.value!)")
-                } else {
-                    print("失败：\(result.error!)")
-                }
-        }
         
     }
 

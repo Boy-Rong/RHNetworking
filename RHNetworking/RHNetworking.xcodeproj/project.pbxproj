@@ -16,7 +16,7 @@
 		EC76BDF120E4B89B0026341E /* RHRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BDED20E4B89B0026341E /* RHRequest.swift */; };
 		EC76BDF220E4B89B0026341E /* RHNetworkStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BDEE20E4B89B0026341E /* RHNetworkStatus.swift */; };
 		EC76BDF320E4B89B0026341E /* RHNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BDEF20E4B89B0026341E /* RHNetworkProvider.swift */; };
-		EC76BDF420E4B89B0026341E /* RHNetworkExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BDF020E4B89B0026341E /* RHNetworkExtensions.swift */; };
+		EC76BDF420E4B89B0026341E /* RHNetwork+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BDF020E4B89B0026341E /* RHNetwork+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +33,7 @@
 		EC76BDED20E4B89B0026341E /* RHRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RHRequest.swift; sourceTree = "<group>"; };
 		EC76BDEE20E4B89B0026341E /* RHNetworkStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RHNetworkStatus.swift; sourceTree = "<group>"; };
 		EC76BDEF20E4B89B0026341E /* RHNetworkProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RHNetworkProvider.swift; sourceTree = "<group>"; };
-		EC76BDF020E4B89B0026341E /* RHNetworkExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RHNetworkExtensions.swift; sourceTree = "<group>"; };
+		EC76BDF020E4B89B0026341E /* RHNetwork+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RHNetwork+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +103,7 @@
 				EC76BDED20E4B89B0026341E /* RHRequest.swift */,
 				EC76BDEF20E4B89B0026341E /* RHNetworkProvider.swift */,
 				EC76BDEE20E4B89B0026341E /* RHNetworkStatus.swift */,
-				EC76BDF020E4B89B0026341E /* RHNetworkExtensions.swift */,
+				EC76BDF020E4B89B0026341E /* RHNetwork+Extensions.swift */,
 			);
 			path = RHNetwork;
 			sourceTree = "<group>";
@@ -229,7 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC76BDF220E4B89B0026341E /* RHNetworkStatus.swift in Sources */,
-				EC76BDF420E4B89B0026341E /* RHNetworkExtensions.swift in Sources */,
+				EC76BDF420E4B89B0026341E /* RHNetwork+Extensions.swift in Sources */,
 				EC76BDDD20E4B6C00026341E /* ViewController.swift in Sources */,
 				EC76BDDB20E4B6C00026341E /* AppDelegate.swift in Sources */,
 				EC76BDF320E4B89B0026341E /* RHNetworkProvider.swift in Sources */,

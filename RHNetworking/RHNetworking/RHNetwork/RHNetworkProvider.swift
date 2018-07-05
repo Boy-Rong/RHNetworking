@@ -68,7 +68,7 @@ extension RHNetworkProvider  {
         
         /// 没有网络时直接返回错误
         if AppNetwork.networkState == .Not {
-            completion(.Failure(RHError("网络连接已断开！", [:])))
+            completion(.Failure(RHNetworkError("网络连接已断开！", [:])))
             return nil
         }
         
@@ -87,14 +87,14 @@ extension RHNetworkProvider  {
             let result = dataResponse.result
             
             if result.isSuccess {  //请求成功
-                let json = result.value!
+                let json = result.value ?? [:]  //容错处理，SB后台不返回数据时的为空字典
                 let response = RHResponse(json) // 解析返回的数据
                 
                 if response.code == .Success {   //成功响应
                     completion(.Success(response.data))
                     
                 } else {
-                    completion(.Failure(RHError()))
+                    completion(.Failure(RHNetworkError("响应错误")))
                 }
                 
             } else {
@@ -114,7 +114,7 @@ extension RHNetworkProvider  {
         
         /// 没有网络时直接返回错误
         if AppNetwork.networkState == .Not {
-            completion(.Failure(RHError.init("网络连接已断开！", [:])))
+            completion(.Failure(RHNetworkError("网络连接已断开！")))
             return nil
         }
         
@@ -130,7 +130,7 @@ extension RHNetworkProvider  {
         dataRequest.responseData { (response) in
             let result = response.result
             if result.isSuccess {
-                completion(.Success(result.value!))
+                completion(.Success(result.value ?? Data()))
                 
             } else {
                 completion(.Failure(result.error!))
