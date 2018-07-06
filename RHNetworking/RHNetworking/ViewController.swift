@@ -16,6 +16,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         testData()
+        
     }
 
     /// 使用方法
@@ -42,7 +43,7 @@ class ViewController: UIViewController {
         }
         
         /// 请求3，使用响应式请求。可以自己扩展RxSwift
-        
+        provider.reactiveRequest(GitHub.userRepositories("495929699"))
     }
 
 
