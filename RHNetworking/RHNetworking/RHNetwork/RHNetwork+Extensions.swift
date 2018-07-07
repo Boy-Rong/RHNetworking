@@ -17,14 +17,14 @@ import ObjectMapper
 // MARK: - 扩展 （扩展的方法依赖根请求方法，默认实现根方法，保证灵活性）
 extension RHNetworkProviderType {
     
-    func reactiveRequest(_ api : API) -> SignalProducer<RHResponse.DataType,RHNetworkError> {
+    func reactiveRequest(_ api : API) -> SignalProducer<RHResponse.DataType,RHError> {
         
         return SignalProducer{ [weak self] observer, lifetime in
             let dataRequest = self?.request(api, completion: { (result) in
                 if result.isSuccess {
                     observer.send(value: result.value!)
                 } else {
-                    let error = RHNetworkError(result.error!.localizedDescription)
+                    let error = RHError(result.error!)
                     observer.send(error:error)
                 }
                 
@@ -37,14 +37,14 @@ extension RHNetworkProviderType {
         }
     }
     
-    func reactiveRequestData(_ api : API) -> SignalProducer<Data,RHNetworkError> {
+    func reactiveRequestData(_ api : API) -> SignalProducer<Data,RHError> {
         
         return SignalProducer { [weak self] observer, lifetime in
             let dataRequest = self?.requestData(api, completion: { (result) in
                 if result.isSuccess {
                     observer.send(value: result.value!)
                 } else {
-                    let error = RHNetworkError(result.error!.localizedDescription)
+                    let error = RHError(result.error!)
                     observer.send(error:error)
                 }
                 
@@ -89,23 +89,38 @@ extension RHResult where Value == Array<[String : Any]> {
     
 }
 
-// MARK: - 转模型类
-class ObjectMap {
+// MARK: - 未返回类型为 [[String : Any]] 添加信号映射
+extension SignalProducer where Value == [[String : Any]] {
     
-    static func map<T : Mappable>(with value : Any) -> T? {
-        guard let array = value as? [[String : Any]],
-            let data = array.first
-            else { return nil }
-        return T(JSON: data)
+    func map<T : Mappable>(to : T.Type) -> SignalProducer<T,RHError> {
+        return mapError({ RHError($0) }).flatMap(.latest, { (value) in
+            return SignalProducer<T,RHError>({ (observer, lifetime) in
+                if let data = value.first,
+                    let object = T(JSON: data) {
+                    observer.send(value: object)
+                } else {
+                    observer.send(error: RHError("转模型错误"))
+                }
+            })
+        })
     }
     
-    func mapArray<T : Mappable>(with value : Any) -> [T] {
-        guard let array = value as? [[String : Any]]
-            else { return [] }
-        return Mapper<T>().mapArray(JSONArray: array)
+    func mapArray<T : Mappable>(to : T.Type) -> SignalProducer<[T],RHError> {
+        return mapError({ RHError($0) })
+            .flatMap(.latest, { (value) in
+                return SignalProducer<[T],RHError>({ (observer, lifetime) in
+                    if let data = value.first,
+                        let _ = data.first {
+                        observer.send(value: Mapper<T>().mapArray(JSONArray: value))
+                    } else {
+                        observer.send(error:RHError("转模型错误"))
+                    }
+                })
+            })
     }
     
 }
+
 
 
 

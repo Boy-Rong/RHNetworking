@@ -68,7 +68,7 @@ extension RHNetworkProvider  {
         
         /// 没有网络时直接返回错误
         if AppNetwork.networkState == .Not {
-            completion(.Failure(RHNetworkError("网络连接已断开！", [:])))
+            completion(.Failure(RHError("网络连接已断开！")))
             return nil
         }
         
@@ -94,7 +94,7 @@ extension RHNetworkProvider  {
                     completion(.Success(response.data))
                     
                 } else {
-                    completion(.Failure(RHNetworkError("响应错误")))
+                    completion(.Failure(RHError("响应错误")))
                 }
                 
             } else {
@@ -114,7 +114,7 @@ extension RHNetworkProvider  {
         
         /// 没有网络时直接返回错误
         if AppNetwork.networkState == .Not {
-            completion(.Failure(RHNetworkError("网络连接已断开！")))
+            completion(.Failure(RHError("网络连接已断开！")))
             return nil
         }
         
