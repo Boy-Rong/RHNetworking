@@ -108,6 +108,10 @@ extension RHNetworkProvider  {
                 if response.code == .Success {   //成功响应
                     completion(.Success(response.data))
                     
+                    // 异步缓存数据
+                    let cacheKey = RHCache.cache.key(with: api)
+                    RHCache.cache.asynSet(object: response.data, key: cacheKey)
+                    
                 } else {
                     completion(.Failure(RHError("响应错误")))
                 }
@@ -157,6 +161,10 @@ extension RHNetworkProvider  {
             let result = response.result
             if result.isSuccess {
                 completion(.Success(result.value ?? Data()))
+                
+                // 异步缓存数据
+                let cacheKey = RHCache.cache.key(with: api)
+                RHCache.cache.asynSet(object: response.data, key: cacheKey)
                 
             } else {
                 completion(.Failure(result.error!))
