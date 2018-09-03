@@ -49,6 +49,7 @@ class AppNetwork {
     
     /// 全局监听
     static func startListening() {
+        
         reachability.startListening()
         /// 监听
         reachability.listener = { status in

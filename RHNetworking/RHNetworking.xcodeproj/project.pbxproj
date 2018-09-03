@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		07B3ABEBAB3377B22DF4C769 /* Pods_RHNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EB07427F2BD9904DFB1EBA3 /* Pods_RHNetworking.framework */; };
+		EC6E1BAD213D066700812AA8 /* RHCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6E1BAC213D066700812AA8 /* RHCache.swift */; };
 		EC76BDDB20E4B6C00026341E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BDDA20E4B6C00026341E /* AppDelegate.swift */; };
 		EC76BDDD20E4B6C00026341E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BDDC20E4B6C00026341E /* ViewController.swift */; };
 		EC76BDE020E4B6C00026341E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC76BDDE20E4B6C00026341E /* Main.storyboard */; };
 		EC76BDE220E4B6C10026341E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC76BDE120E4B6C10026341E /* Assets.xcassets */; };
 		EC76BDE520E4B6C10026341E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC76BDE320E4B6C10026341E /* LaunchScreen.storyboard */; };
-		EC76BDF120E4B89B0026341E /* RHRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BDED20E4B89B0026341E /* RHRequest.swift */; };
+		EC76BDF120E4B89B0026341E /* RHType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BDED20E4B89B0026341E /* RHType.swift */; };
 		EC76BDF220E4B89B0026341E /* RHNetworkStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BDEE20E4B89B0026341E /* RHNetworkStatus.swift */; };
 		EC76BDF320E4B89B0026341E /* RHNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BDEF20E4B89B0026341E /* RHNetworkProvider.swift */; };
 		EC76BDF420E4B89B0026341E /* RHNetwork+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BDF020E4B89B0026341E /* RHNetwork+Extensions.swift */; };
@@ -23,6 +24,7 @@
 		952EF4AED38FB4B65E8BF749 /* Pods-RHNetworking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RHNetworking.release.xcconfig"; path = "Pods/Target Support Files/Pods-RHNetworking/Pods-RHNetworking.release.xcconfig"; sourceTree = "<group>"; };
 		9EB07427F2BD9904DFB1EBA3 /* Pods_RHNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RHNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E68763236B21F08D86F4B20D /* Pods-RHNetworking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RHNetworking.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RHNetworking/Pods-RHNetworking.debug.xcconfig"; sourceTree = "<group>"; };
+		EC6E1BAC213D066700812AA8 /* RHCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RHCache.swift; sourceTree = "<group>"; };
 		EC76BDD720E4B6C00026341E /* RHNetworking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RHNetworking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC76BDDA20E4B6C00026341E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC76BDDC20E4B6C00026341E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -30,7 +32,7 @@
 		EC76BDE120E4B6C10026341E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC76BDE420E4B6C10026341E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC76BDE620E4B6C10026341E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EC76BDED20E4B89B0026341E /* RHRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RHRequest.swift; sourceTree = "<group>"; };
+		EC76BDED20E4B89B0026341E /* RHType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RHType.swift; sourceTree = "<group>"; };
 		EC76BDEE20E4B89B0026341E /* RHNetworkStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RHNetworkStatus.swift; sourceTree = "<group>"; };
 		EC76BDEF20E4B89B0026341E /* RHNetworkProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RHNetworkProvider.swift; sourceTree = "<group>"; };
 		EC76BDF020E4B89B0026341E /* RHNetwork+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RHNetwork+Extensions.swift"; sourceTree = "<group>"; };
@@ -100,10 +102,11 @@
 		EC76BDEC20E4B89B0026341E /* RHNetwork */ = {
 			isa = PBXGroup;
 			children = (
-				EC76BDED20E4B89B0026341E /* RHRequest.swift */,
+				EC76BDED20E4B89B0026341E /* RHType.swift */,
 				EC76BDEF20E4B89B0026341E /* RHNetworkProvider.swift */,
 				EC76BDEE20E4B89B0026341E /* RHNetworkStatus.swift */,
 				EC76BDF020E4B89B0026341E /* RHNetwork+Extensions.swift */,
+				EC6E1BAC213D066700812AA8 /* RHCache.swift */,
 			);
 			path = RHNetwork;
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-RHNetworking/Pods-RHNetworking-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Cache/Cache.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
@@ -211,6 +215,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
@@ -233,7 +238,8 @@
 				EC76BDDD20E4B6C00026341E /* ViewController.swift in Sources */,
 				EC76BDDB20E4B6C00026341E /* AppDelegate.swift in Sources */,
 				EC76BDF320E4B89B0026341E /* RHNetworkProvider.swift in Sources */,
-				EC76BDF120E4B89B0026341E /* RHRequest.swift in Sources */,
+				EC76BDF120E4B89B0026341E /* RHType.swift in Sources */,
+				EC6E1BAD213D066700812AA8 /* RHCache.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

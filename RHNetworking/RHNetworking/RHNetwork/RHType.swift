@@ -94,7 +94,7 @@ struct RHResponse {
 
 
 
-/// RH 错误类型
+// MARK: - RH网络错误类型
 struct RHError : Error {
     let message : String
     let info : [String : Any]?

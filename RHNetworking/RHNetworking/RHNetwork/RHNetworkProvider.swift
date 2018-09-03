@@ -33,6 +33,9 @@ class RHNetworkProvider<API : RHApiType> : RHNetworkProviderType {
     
     init(_ manager : Manager = Manager.default) {
         self.manager = manager
+        
+        // 开启网络监听
+        AppNetwork.startListening()
     }
 
     
@@ -66,10 +69,19 @@ extension RHNetworkProvider  {
             return nil
         }
         
-        /// 没有网络时直接返回错误
-        if AppNetwork.networkState == .Not {
-            completion(.Failure(RHError("网络连接已断开！")))
-            return nil
+        /// 没有网络时
+        if AppNetwork.networkState == .Not || AppNetwork.networkState == .Unknown {
+            // 先去找缓存
+            if let data = RHCache.cache.synObject(with: "") {
+                //返回缓存
+                completion(.Success(data as! RHResponse.DataType))
+                
+            } else {
+                // 没有缓存返回错误
+                completion(.Failure(RHError("网络连接已断开！")))
+                return nil
+            }
+        
         }
         
         let dataRequest = createRequest(api)

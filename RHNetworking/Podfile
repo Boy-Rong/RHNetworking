@@ -7,20 +7,7 @@ target 'RHNetworking' do
 pod 'Alamofire'
 pod 'ReactiveCocoa'
 pod 'ObjectMapper'
+pod 'Cache'
 
 end
-
-##让库版本为Swift3.2
-#post_install do |installer|
-#    #让指定库版本为Swift3.2
-##    myTargets = ['EZSwiftExtensions']
-#
-#    installer.pods_project.targets.each do |target|
-##        if myTargets.include? target.name
-#            target.build_configurations.each do |config|
-#                config.build_settings['SWIFT_VERSION'] = '3.2'
-#            end
-##        end
-#    end
-#end
 
