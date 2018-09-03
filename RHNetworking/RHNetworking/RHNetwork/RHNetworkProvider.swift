@@ -70,20 +70,23 @@ extension RHNetworkProvider  {
         }
         
         /// 没有网络时
-        if AppNetwork.networkState == .Not || AppNetwork.networkState == .Unknown {
+        guard AppNetwork.networkState == .Not || AppNetwork.networkState == .Unknown else {
             // 先去找缓存
-            if let data = RHCache.cache.synObject(with: "") {
-                //返回缓存
-                completion(.Success(data as! RHResponse.DataType))
-                
-            } else {
-                // 没有缓存返回错误
-                completion(.Failure(RHError("网络连接已断开！")))
-                return nil
-            }
+            let cacheKey = RHCache.cache.key(with: api)
+            RHCache.cache.asynObject(with: cacheKey, block: { (data) in
+                if let data = data {
+                    //返回缓存数据
+                    completion(.Success(data as! RHResponse.DataType))
+                } else {
+                    // 没有缓存返回错误
+                    completion(.Failure(RHError("网络连接已断开！")))
+                }
+            })
         
+            return nil
         }
         
+        /// 请求任务
         let dataRequest = createRequest(api)
         
         //此任务正在进行
@@ -124,9 +127,20 @@ extension RHNetworkProvider  {
     /// 请求Data
     func requestData(_ api : API,  completion: @escaping (RHResult<Data>) -> Void ) -> DataRequest? {
         
-        /// 没有网络时直接返回错误
-        if AppNetwork.networkState == .Not {
-            completion(.Failure(RHError("网络连接已断开！")))
+        /// 没有网络时
+        guard AppNetwork.networkState == .Not || AppNetwork.networkState == .Unknown else {
+            // 先去找缓存
+            let cacheKey = RHCache.cache.key(with: api)
+            RHCache.cache.asynObject(with: cacheKey, block: { (data) in
+                if let data = data {
+                    //返回缓存数据
+                    completion(.Success(data as! Data))
+                } else {
+                    // 没有缓存返回错误
+                    completion(.Failure(RHError("网络连接已断开！")))
+                }
+            })
+            
             return nil
         }
         

@@ -33,3 +33,19 @@ class RHCache {
     }
     
 }
+
+extension RHCache {
+    
+    func key(with api : RHApiType) -> String {
+        return ""
+    }
+    
+}
+
+
+
+
+
+
+
+
