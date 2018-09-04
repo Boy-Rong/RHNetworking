@@ -18,17 +18,17 @@ class RHCache {
     }
     
     /// 异步设置缓存
-    func asynSet(object : Any ,key : String) {
+    func asyncSet(object : Any ,key : String) {
         
     }
 
     ///异步获取缓存
-    func asynObject(with key : String, block : ((Any?) -> Void)) {
+    func asyncObject(with key : String, block : ((Any?) -> Void)) {
         block(nil)
     }
     
     /// 同步获取数据
-    func synObject(with key : String) -> Any? {
+    func syncObject(with key : String) -> Any? {
         return nil
     }
     

@@ -71,17 +71,23 @@ extension RHNetworkProvider  {
         
         /// 没有网络时
         guard AppNetwork.networkState == .Not || AppNetwork.networkState == .Unknown else {
-            // 先去找缓存
-            let cacheKey = RHCache.cache.key(with: api)
-            RHCache.cache.asynObject(with: cacheKey, block: { (data) in
-                if let data = data {
-                    //返回缓存数据
-                    completion(.Success(data as! RHResponse.DataType))
-                } else {
-                    // 没有缓存返回错误
-                    completion(.Failure(RHError("网络连接已断开！")))
+            
+            if api.isCache {
+                // 先去找缓存
+                let cacheKey = RHCache.cache.key(with: api)
+                RHCache.cache.asyncObject(with: cacheKey) { (data) in
+                    if let data = data {
+                        //返回缓存数据
+                        completion(.Success(data as! RHResponse.DataType))
+                    } else {
+                        // 没有缓存返回错误
+                        completion(.Failure(RHError(networkError)))
+                    }
                 }
-            })
+                
+            } else {
+                completion(.Failure(RHError(networkError)))
+            }
         
             return nil
         }
@@ -108,12 +114,14 @@ extension RHNetworkProvider  {
                 if response.code == .Success {   //成功响应
                     completion(.Success(response.data))
                     
-                    // 异步缓存数据
-                    let cacheKey = RHCache.cache.key(with: api)
-                    RHCache.cache.asynSet(object: response.data, key: cacheKey)
+                    if api.isCache {
+                        // 异步缓存数据
+                        let cacheKey = RHCache.cache.key(with: api)
+                        RHCache.cache.asyncSet(object: response.data, key: cacheKey)
+                    }
                     
                 } else {
-                    completion(.Failure(RHError("响应错误")))
+                    completion(.Failure(RHError(response.message)))
                 }
                 
             } else {
@@ -133,17 +141,24 @@ extension RHNetworkProvider  {
         
         /// 没有网络时
         guard AppNetwork.networkState == .Not || AppNetwork.networkState == .Unknown else {
-            // 先去找缓存
-            let cacheKey = RHCache.cache.key(with: api)
-            RHCache.cache.asynObject(with: cacheKey, block: { (data) in
-                if let data = data {
-                    //返回缓存数据
-                    completion(.Success(data as! Data))
-                } else {
-                    // 没有缓存返回错误
-                    completion(.Failure(RHError("网络连接已断开！")))
+            
+            if api.isCache {
+                // 先去找缓存
+                let cacheKey = RHCache.cache.key(with: api)
+                RHCache.cache.asyncObject(with: cacheKey) { (data) in
+                    if let data = data {
+                        //返回缓存数据
+                        completion(.Success(data as! Data))
+                    } else {
+                        // 没有缓存返回错误
+                        completion(.Failure(RHError(networkError)))
+                    }
                 }
-            })
+                
+            } else {
+                // 没有网络没有缓存直接返回错误
+                completion(.Failure(RHError(networkError)))
+            }
             
             return nil
         }
@@ -162,9 +177,11 @@ extension RHNetworkProvider  {
             if result.isSuccess {
                 completion(.Success(result.value ?? Data()))
                 
-                // 异步缓存数据
-                let cacheKey = RHCache.cache.key(with: api)
-                RHCache.cache.asynSet(object: response.data, key: cacheKey)
+                if api.isCache {
+                    // 异步缓存数据
+                    let cacheKey = RHCache.cache.key(with: api)
+                    RHCache.cache.asyncSet(object: response.data, key: cacheKey)
+                }
                 
             } else {
                 completion(.Failure(result.error!))

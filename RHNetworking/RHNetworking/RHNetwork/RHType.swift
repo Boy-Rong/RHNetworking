@@ -18,6 +18,9 @@ typealias Method = Alamofire.HTTPMethod
 typealias DataRequest = Alamofire.DataRequest
 
 
+/// 公用常量
+let networkError = "网络链接错误！"
+
 
 // MARK: - API基本协议
 protocol RHApiType {
@@ -32,6 +35,9 @@ protocol RHApiType {
     
     /// 是否允许同一请求多次发送 默认不允许
     var allowRepeat : Bool { get }
+    
+    // 请求是否需要缓存,默认缓存
+    var isCache : Bool { get }
     
     /// 测试返回数据,默认为nil. 只对请求json有用
     var testData : RHResponse.DataType? { get }
@@ -49,6 +55,10 @@ extension RHApiType {
     
     var allowRepeat : Bool {
         return false
+    }
+    
+    var isCache : Bool {
+        return true
     }
     
     var testData : RHResponse.DataType? {
