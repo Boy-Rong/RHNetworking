@@ -85,7 +85,7 @@ extension GitHub : RHApiType {
     var testData: RHResponse.DataType? {
         switch self {
         case .userProfile:
-            return [["login" : "495929699","url" : "https://api.github.com/users/495929699"]]
+            return ["login" : "495929699","url" : "https://api.github.com/users/495929699"]
         case .userRepositories:
 //            return [["name" : "RHNetworking","full_name" : "495929699/RHNetworking"]]
             return nil

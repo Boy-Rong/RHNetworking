@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import ReactiveSwift
 import Alamofire
 
 
@@ -17,6 +17,7 @@ typealias Encoding = Alamofire.ParameterEncoding
 typealias Method = Alamofire.HTTPMethod
 typealias DataRequest = Alamofire.DataRequest
 
+typealias RHNetworkSignal = SignalProducer<RHResponse.DataType,RHError>
 
 /// 公用常量
 let networkError = "网络链接错误！"
@@ -67,16 +68,11 @@ extension RHApiType {
 }
 
 
-
 // MARK: - 服务器返回的结构，请求JSON时的格式
 struct RHResponse {
     /// 服务器返回的 data字段 类型
     /// 类型可根据情况更改
-    typealias DataType = Array<[String : Any]>
-    
-    let code : RHResponseStatus
-    let message : String
-    let data : DataType
+    typealias DataType = [String : Any]
     
     // MARK: - 网络响应状态
     enum RHResponseStatus : Int {
@@ -84,6 +80,10 @@ struct RHResponse {
         case LoginExpired     //登录过期
         case Failure
     }
+    
+    let code : RHResponseStatus
+    let message : String
+    let data : DataType
     
     init(_ json : Any) {
         if let json = json as? [String : Any],
@@ -97,7 +97,7 @@ struct RHResponse {
         } else {
             self.code = .Failure
             self.message = "Error"
-            self.data = []
+            self.data = [:]
         }
     }
 }

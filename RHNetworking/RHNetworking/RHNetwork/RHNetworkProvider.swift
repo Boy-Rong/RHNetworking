@@ -69,30 +69,28 @@ extension RHNetworkProvider  {
             return nil
         }
         
-        /// 没有网络时
-        guard AppNetwork.networkState == .Not || AppNetwork.networkState == .Unknown else {
-            
-            if api.isCache {
-                // 先去找缓存
-                let cacheKey = RHCache.cache.key(with: api)
-                RHCache.cache.asyncObject(with: cacheKey) { (data) in
-                    if let data = data {
-                        //返回缓存数据
-                        completion(.Success(data as! RHResponse.DataType))
-                    } else {
-                        // 没有缓存返回错误
-                        completion(.Failure(RHError(networkError)))
-                    }
+        /// 先去找缓存
+        if api.isCache {
+       
+            let cacheKey = RHCache.default.key(with: api)
+            RHCache.default.asyncObject(with: cacheKey) { (data) in
+                if let data = data {
+                    //返回缓存数据
+                    completion(.Success(data as! RHResponse.DataType))
+                } else {
+                    // 没有缓存返回错误
+                    completion(.Failure(RHError(networkError)))
                 }
-                
-            } else {
-                completion(.Failure(RHError(networkError)))
             }
+            
+        }
         
+        /// 没有网络时
+        guard AppNetwork.networkState == .Not else {
             return nil
         }
         
-        /// 请求任务
+        /// 缓存查完继续 请求任务
         let dataRequest = createRequest(api)
         
         //此任务正在进行
@@ -116,8 +114,8 @@ extension RHNetworkProvider  {
                     
                     if api.isCache {
                         // 异步缓存数据
-                        let cacheKey = RHCache.cache.key(with: api)
-                        RHCache.cache.asyncSet(object: response.data, key: cacheKey)
+                        let cacheKey = RHCache.default.key(with: api)
+                        RHCache.default.asyncSet(object: response.data, key: cacheKey)
                     }
                     
                 } else {
@@ -139,27 +137,23 @@ extension RHNetworkProvider  {
     /// 请求Data
     func requestData(_ api : API,  completion: @escaping (RHResult<Data>) -> Void ) -> DataRequest? {
         
-        /// 没有网络时
-        guard AppNetwork.networkState == .Not || AppNetwork.networkState == .Unknown else {
-            
-            if api.isCache {
-                // 先去找缓存
-                let cacheKey = RHCache.cache.key(with: api)
-                RHCache.cache.asyncObject(with: cacheKey) { (data) in
-                    if let data = data {
-                        //返回缓存数据
-                        completion(.Success(data as! Data))
-                    } else {
-                        // 没有缓存返回错误
-                        completion(.Failure(RHError(networkError)))
-                    }
+        if api.isCache {
+            // 先去找缓存
+            let cacheKey = RHCache.default.key(with: api)
+            RHCache.default.asyncObject(with: cacheKey) { (data) in
+                if let data = data {
+                    //返回缓存数据
+                    completion(.Success(data as! Data))
+                } else {
+                    // 没有缓存返回错误
+                    completion(.Failure(RHError(networkError)))
                 }
-                
-            } else {
-                // 没有网络没有缓存直接返回错误
-                completion(.Failure(RHError(networkError)))
             }
             
+        }
+        
+        /// 没有网络时
+        guard AppNetwork.networkState == .Not else {
             return nil
         }
         
@@ -179,8 +173,8 @@ extension RHNetworkProvider  {
                 
                 if api.isCache {
                     // 异步缓存数据
-                    let cacheKey = RHCache.cache.key(with: api)
-                    RHCache.cache.asyncSet(object: response.data, key: cacheKey)
+                    let cacheKey = RHCache.default.key(with: api)
+                    RHCache.default.asyncSet(object: response.data!, key: cacheKey)
                 }
                 
             } else {

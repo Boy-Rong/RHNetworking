@@ -14,7 +14,7 @@
 		EC76BDE020E4B6C00026341E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC76BDDE20E4B6C00026341E /* Main.storyboard */; };
 		EC76BDE220E4B6C10026341E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC76BDE120E4B6C10026341E /* Assets.xcassets */; };
 		EC76BDE520E4B6C10026341E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC76BDE320E4B6C10026341E /* LaunchScreen.storyboard */; };
-		EC76BDF120E4B89B0026341E /* RHType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BDED20E4B89B0026341E /* RHType.swift */; };
+		EC76BDF120E4B89B0026341E /* RHRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BDED20E4B89B0026341E /* RHRequestType.swift */; };
 		EC76BDF220E4B89B0026341E /* RHNetworkStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BDEE20E4B89B0026341E /* RHNetworkStatus.swift */; };
 		EC76BDF320E4B89B0026341E /* RHNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BDEF20E4B89B0026341E /* RHNetworkProvider.swift */; };
 		EC76BDF420E4B89B0026341E /* RHNetwork+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BDF020E4B89B0026341E /* RHNetwork+Extensions.swift */; };
@@ -32,10 +32,11 @@
 		EC76BDE120E4B6C10026341E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC76BDE420E4B6C10026341E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC76BDE620E4B6C10026341E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EC76BDED20E4B89B0026341E /* RHType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RHType.swift; sourceTree = "<group>"; };
+		EC76BDED20E4B89B0026341E /* RHRequestType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RHRequestType.swift; sourceTree = "<group>"; };
 		EC76BDEE20E4B89B0026341E /* RHNetworkStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RHNetworkStatus.swift; sourceTree = "<group>"; };
 		EC76BDEF20E4B89B0026341E /* RHNetworkProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RHNetworkProvider.swift; sourceTree = "<group>"; };
 		EC76BDF020E4B89B0026341E /* RHNetwork+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RHNetwork+Extensions.swift"; sourceTree = "<group>"; };
+		ECA714BE214670F9006BFC6F /* RHNetworking-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RHNetworking-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +96,7 @@
 				EC76BDE120E4B6C10026341E /* Assets.xcassets */,
 				EC76BDE320E4B6C10026341E /* LaunchScreen.storyboard */,
 				EC76BDE620E4B6C10026341E /* Info.plist */,
+				ECA714BE214670F9006BFC6F /* RHNetworking-Bridging-Header.h */,
 			);
 			path = RHNetworking;
 			sourceTree = "<group>";
@@ -102,7 +104,7 @@
 		EC76BDEC20E4B89B0026341E /* RHNetwork */ = {
 			isa = PBXGroup;
 			children = (
-				EC76BDED20E4B89B0026341E /* RHType.swift */,
+				EC76BDED20E4B89B0026341E /* RHRequestType.swift */,
 				EC76BDEF20E4B89B0026341E /* RHNetworkProvider.swift */,
 				EC76BDEE20E4B89B0026341E /* RHNetworkStatus.swift */,
 				EC76BDF020E4B89B0026341E /* RHNetwork+Extensions.swift */,
@@ -145,6 +147,7 @@
 				TargetAttributes = {
 					EC76BDD620E4B6C00026341E = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 0940;
 					};
 				};
 			};
@@ -211,6 +214,7 @@
 				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/YYCache/YYCache.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -220,6 +224,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYCache.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -238,7 +243,7 @@
 				EC76BDDD20E4B6C00026341E /* ViewController.swift in Sources */,
 				EC76BDDB20E4B6C00026341E /* AppDelegate.swift in Sources */,
 				EC76BDF320E4B89B0026341E /* RHNetworkProvider.swift in Sources */,
-				EC76BDF120E4B89B0026341E /* RHType.swift in Sources */,
+				EC76BDF120E4B89B0026341E /* RHRequestType.swift in Sources */,
 				EC6E1BAD213D066700812AA8 /* RHCache.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -384,6 +389,7 @@
 			baseConfigurationReference = E68763236B21F08D86F4B20D /* Pods-RHNetworking.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 446CL45DQR;
 				INFOPLIST_FILE = RHNetworking/Info.plist;
@@ -393,6 +399,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pyq.PYQ.RHNetworking;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RHNetworking/RHNetworking-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -403,6 +411,7 @@
 			baseConfigurationReference = 952EF4AED38FB4B65E8BF749 /* Pods-RHNetworking.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 446CL45DQR;
 				INFOPLIST_FILE = RHNetworking/Info.plist;
@@ -412,6 +421,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pyq.PYQ.RHNetworking;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RHNetworking/RHNetworking-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
